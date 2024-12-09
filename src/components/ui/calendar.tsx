@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons';
-import { DayPicker } from 'react-day-picker';
+import { DayPicker, Navigation } from 'react-day-picker';
 
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
@@ -58,8 +58,30 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: () => <ChevronLeftIcon className="h-4 w-4" />,
-        IconRight: () => <ChevronRightIcon className="h-4 w-4" />,
+        Navigation: (props) => (
+          <div className="flex items-center space-x-1">
+            <button
+              {...props}
+              className={cn(
+                buttonVariants({ variant: 'outline' }),
+                'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100'
+              )}
+              aria-label="Previous Month"
+            >
+              <ChevronLeftIcon className="h-4 w-4" />
+            </button>
+            <button
+              {...props}
+              className={cn(
+                buttonVariants({ variant: 'outline' }),
+                'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100'
+              )}
+              aria-label="Next Month"
+            >
+              <ChevronRightIcon className="h-4 w-4" />
+            </button>
+          </div>
+        ),
       }}
       {...props}
     />
